@@ -7,12 +7,15 @@ const srcFoler = `./src`;
 
 export const path = {
 	build: {
+		html: `${buildFolder}/`,
 		files: `${buildFolder}/files/`
 	},
 	src: {
+		html: `${srcFoler}/*.html`,
 		files: `${srcFoler}/files/**/*.*`,
 	},
 	watch: {
+		html: `${srcFoler}/**/*.html`,
 		files: `${srcFoler}/files/**/*.*`
 	},
 	clean: buildFolder,
