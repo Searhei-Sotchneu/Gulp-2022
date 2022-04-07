@@ -3,10 +3,14 @@ import gulp from "gulp";
 //импорт путей
 import { path } from "./gulp/config/path.js";
 
+// импорт общих плагинов
+import { plugins } from "./gulp/config/plugins.js";
+
 //передаем общие значения в глобальную переменную
 global.app = {
 	path: path,
-	gulp: gulp
+	gulp: gulp,
+	plugins: plugins
 }
 
 
