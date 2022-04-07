@@ -18,6 +18,7 @@ global.app = {
 import { copy } from "./gulp/tascs/copy.js";
 import { reset } from "./gulp/tascs/reset.js";
 import { html } from "./gulp/tascs/html.js";
+import { server } from "./gulp/tasks/server.js";
 
 //наблюдатель за изменениями в файлах
 function watcher() {
@@ -28,7 +29,7 @@ function watcher() {
 const mainTasks = gulp.parallel(copy, html);
 
 //построение сценария выполнения задач
-const dev = gulp.series(reset, mainTasks, watcher);
+const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
 
 //выполнение сценария по умолчанию
 gulp.task('default', dev);
