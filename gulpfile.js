@@ -21,6 +21,8 @@ import { html } from "./gulp/tascs/html.js";
 import { server } from "./gulp/tascs/server.js";
 import { scss } from "./gulp/tascs/scss.js";
 import { js } from "./gulp/tascs/js.js";
+import { images } from "./gulp/tascs/images.js";
+
 
 //наблюдатель за изменениями в файлах
 function watcher() {
@@ -28,9 +30,10 @@ function watcher() {
 	gulp.watch(path.watch.html, html);
 	gulp.watch(path.watch.scss, scss);
 	gulp.watch(path.watch.js, js);
+	gulp.watch(path.watch.images, images);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss, js);
+const mainTasks = gulp.parallel(copy, html, scss, js, images);
 
 //построение сценария выполнения задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
