@@ -19,14 +19,16 @@ import { copy } from "./gulp/tascs/copy.js";
 import { reset } from "./gulp/tascs/reset.js";
 import { html } from "./gulp/tascs/html.js";
 import { server } from "./gulp/tascs/server.js";
+import { scss } from "./gulp/tascs/scss.js";
 
 //наблюдатель за изменениями в файлах
 function watcher() {
 	gulp.watch(path.watch.files, copy);
 	gulp.watch(path.watch.html, html);
+	gulp.watch(path.watch.scss, scss);
 }
 
-const mainTasks = gulp.parallel(copy, html);
+const mainTasks = gulp.parallel(copy, html, scss);
 
 //построение сценария выполнения задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
