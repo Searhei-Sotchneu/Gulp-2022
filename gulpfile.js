@@ -20,15 +20,17 @@ import { reset } from "./gulp/tascs/reset.js";
 import { html } from "./gulp/tascs/html.js";
 import { server } from "./gulp/tascs/server.js";
 import { scss } from "./gulp/tascs/scss.js";
+import { js } from "./gulp/tascs/js.js";
 
 //наблюдатель за изменениями в файлах
 function watcher() {
 	gulp.watch(path.watch.files, copy);
 	gulp.watch(path.watch.html, html);
 	gulp.watch(path.watch.scss, scss);
+	gulp.watch(path.watch.js, js);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss);
+const mainTasks = gulp.parallel(copy, html, scss, js);
 
 //построение сценария выполнения задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
