@@ -22,6 +22,7 @@ import { server } from "./gulp/tascs/server.js";
 import { scss } from "./gulp/tascs/scss.js";
 import { js } from "./gulp/tascs/js.js";
 import { images } from "./gulp/tascs/images.js";
+import { otfToTtf, ttfToWoff, fontsStyle } from "./gulp/tascs/fonts.js";
 
 
 //наблюдатель за изменениями в файлах
@@ -33,7 +34,11 @@ function watcher() {
 	gulp.watch(path.watch.images, images);
 }
 
-const mainTasks = gulp.parallel(copy, html, scss, js, images);
+// последовательная обработка шрифтов
+const fonts = gulp.series(otfToTtf, ttfToWoff, fontsStyle);
+
+// основные задачи:
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, js, images));
 
 //построение сценария выполнения задач
 const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
